@@ -548,3 +548,210 @@ img {
   padding: 0.1rem 0.3rem;
   cursor: pointer;
 }
+
+/* ===== Screen 4: Message Flow Timeline ===== */
+#screen-timeline {
+  background: #fff;
+}
+
+/* Timeline Header */
+.timeline-header {
+  display: flex;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  padding-top: max(0.75rem, env(safe-area-inset-top));
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.timeline-header-profile {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex: 1;
+}
+
+/* Timeline Body */
+.timeline-body {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: hidden;
+  padding: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  scroll-behavior: smooth;
+}
+
+/* Webkit scrollbar styling */
+.timeline-body::-webkit-scrollbar {
+  width: 0.25rem;
+}
+
+.timeline-body::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.timeline-body::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.2);
+  border-radius: 0.125rem;
+}
+
+/* Timeline Messages */
+.timeline-msg {
+  display: flex;
+  flex-direction: column;
+  max-width: 80%;
+  opacity: 0;
+  transform: translateY(1rem) scale(0.9);
+}
+
+.timeline-msg.appear {
+  animation: timeline-msg-appear 0.4s ease-out forwards;
+}
+
+.timeline-msg[data-emotional="true"].appear {
+  animation: timeline-emotional-appear 0.4s ease-out forwards;
+}
+
+@keyframes timeline-msg-appear {
+  0% { opacity: 0; transform: translateY(1rem) scale(0.9); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes timeline-emotional-appear {
+  0% { opacity: 0; transform: translateY(1rem) scale(0.9); }
+  60% { opacity: 1; transform: translateY(0) scale(1.08); }
+  100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+.timeline-msg[data-emotional="true"] .chat-bubble {
+  animation: emotional-glow 1.2s ease-in-out;
+}
+
+@keyframes emotional-glow {
+  0%, 100% { box-shadow: 0 0 0 rgba(255, 198, 41, 0); }
+  50% { box-shadow: 0 0 20px rgba(255, 198, 41, 0.6), 0 0 30px rgba(255, 198, 41, 0.3); }
+}
+
+.timeline-msg-left {
+  align-self: flex-start;
+}
+
+.timeline-msg-right {
+  align-self: flex-end;
+  align-items: flex-end;
+}
+
+/* Timeline Separator */
+.timeline-separator {
+  align-self: center;
+  text-align: center;
+  padding: 0.75rem 0;
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.timeline-separator.appear {
+  animation: separator-appear 0.5s ease-out forwards;
+}
+
+@keyframes separator-appear {
+  0% { opacity: 0; transform: scale(0.8); }
+  100% { opacity: 1; transform: scale(1); }
+}
+
+.timeline-separator-line {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.timeline-separator-line::before,
+.timeline-separator-line::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(to right, transparent, var(--text-secondary), transparent);
+  opacity: 0.3;
+}
+
+/* Timeline CTA Container */
+.timeline-cta-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  padding: 1.25rem 1rem;
+  padding-bottom: max(1.25rem, calc(env(safe-area-inset-bottom) + 1rem));
+  background: linear-gradient(to top, #fff 0%, #fff 70%, rgba(255, 255, 255, 0) 100%);
+  flex-shrink: 0;
+  opacity: 0;
+  transform: translateY(2rem);
+  pointer-events: none;
+}
+
+.timeline-cta-container.show {
+  animation: cta-container-appear 0.6s ease-out forwards;
+  pointer-events: auto;
+}
+
+@keyframes cta-container-appear {
+  0% { opacity: 0; transform: translateY(2rem); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Timeline CTA Button */
+.timeline-cta-button {
+  background: var(--bumble-yellow);
+  color: #333;
+  border: none;
+  border-radius: 2rem;
+  padding: 1rem 2.5rem;
+  font-size: 1.05rem;
+  font-weight: 700;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(255, 198, 41, 0.4);
+  transition: transform 0.2s ease;
+}
+
+.timeline-cta-button:active {
+  transform: scale(0.96);
+}
+
+.timeline-cta-button::before {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: linear-gradient(45deg, transparent 30%, rgba(255, 255, 255, 0.4) 50%, transparent 70%);
+  animation: button-shimmer 3s infinite;
+}
+
+@keyframes button-shimmer {
+  0% { transform: translateX(-100%) translateY(-100%); }
+  100% { transform: translateX(100%) translateY(100%); }
+}
+
+.timeline-cta-container.show .timeline-cta-button {
+  animation: cta-pulse 2s ease-in-out infinite;
+}
+
+@keyframes cta-pulse {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(255, 198, 41, 0.4),
+                0 0 0 0 rgba(255, 198, 41, 0.4);
+  }
+  50% {
+    box-shadow: 0 4px 20px rgba(255, 198, 41, 0.6),
+                0 0 0 15px rgba(255, 198, 41, 0);
+  }
+}
