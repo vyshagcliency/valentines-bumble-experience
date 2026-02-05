@@ -230,7 +230,7 @@
     { type: 'msg', side: 'left', text: 'April then', emotional: false, delay: 400 },
     { type: 'msg', side: 'right', text: 'April works', emotional: false, delay: 350 },
     { type: 'msg', side: 'right', text: "Cool,I'll use that to make u rethink waiting", emotional: true, delay: 600 },
-    { type: 'msg', side: 'left', text: 'We'll see 😏', emotional: false, delay: 450 },
+    { type: 'msg', side: 'left', text: "We'll see 😏", emotional: false, delay: 450 },
     { type: 'separator', text: '3 weeks later', delay: 900 },
 
     // Phase 5: Resolution
