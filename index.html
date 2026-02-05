@@ -7,6 +7,10 @@
   <meta name="theme-color" content="#1a1a1a">
   <title>Bumble</title>
   <link rel="stylesheet" href="styles.css">
+  <!-- Google Fonts for handwriting aesthetic -->
+  <link href="https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Indie+Flower&family=Kaushan+Script&display=swap" rel="stylesheet">
+  <!-- Typed.js for typewriter effect -->
+  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0"></script>
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js" defer></script>
 </head>
 <body>
@@ -179,6 +183,68 @@
       <button class="timeline-cta-button" id="cta-button">
         come to the canteen
       </button>
+    </div>
+  </div>
+
+  <!-- Screen 5: Narration -->
+  <div id="screen-narration" class="screen">
+    <div class="narration-container">
+      <div id="narration-text" class="narration-text"></div>
+    </div>
+  </div>
+
+  <!-- Screen 6: Diary Cover -->
+  <div id="screen-diary-cover" class="screen">
+    <div class="diary-cover-container">
+      <div id="diary-book" class="diary-book">
+        <div class="diary-book-cover">
+          <h1 class="diary-title">my world</h1>
+          <div class="diary-lock">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+              <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+            </svg>
+          </div>
+          <p class="diary-subtitle">click to open</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Screen 7: Password Modal -->
+  <div id="password-modal" class="password-modal">
+    <div class="password-backdrop"></div>
+    <div class="password-content">
+      <h2 class="password-title">Enter Password</h2>
+      <p class="password-hint">the thing i love the most</p>
+      <input type="text" id="password-input" class="password-input" placeholder="password" autocomplete="off">
+      <p id="password-error" class="password-error"></p>
+      <button id="password-submit" class="password-submit">Unlock</button>
+    </div>
+  </div>
+
+  <!-- Screen 8: Diary Pages -->
+  <div id="screen-diary-pages" class="screen">
+    <button id="diary-close-btn" class="diary-close-btn" aria-label="Close">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="18" y1="6" x2="6" y2="18"></line>
+        <line x1="6" y1="6" x2="18" y2="18"></line>
+      </svg>
+    </button>
+    <div class="diary-pages-container">
+      <div class="diary-open-book">
+        <div class="diary-page diary-page-left">
+          <div class="diary-page-content">
+            <p class="diary-placeholder">More memories coming soon...</p>
+          </div>
+        </div>
+        <div class="diary-binding"></div>
+        <div class="diary-page diary-page-right">
+          <div class="diary-page-content">
+            <p class="diary-placeholder">To be continued...</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 

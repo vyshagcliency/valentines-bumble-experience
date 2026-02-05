@@ -6,11 +6,21 @@
   const screenMatch = document.getElementById('screen-match');
   const screenChat = document.getElementById('screen-chat');
   const screenTimeline = document.getElementById('screen-timeline');
+  const screenNarration = document.getElementById('screen-narration');
+  const screenDiaryCover = document.getElementById('screen-diary-cover');
+  const screenDiaryPages = document.getElementById('screen-diary-pages');
   const card = document.getElementById('swipe-card');
   const nopeMessage = document.getElementById('nope-message');
   const timelineBody = document.getElementById('timeline-body');
   const timelineCta = document.getElementById('timeline-cta');
   const ctaButton = document.getElementById('cta-button');
+  const narrationText = document.getElementById('narration-text');
+  const diaryBook = document.getElementById('diary-book');
+  const passwordModal = document.getElementById('password-modal');
+  const passwordInput = document.getElementById('password-input');
+  const passwordSubmit = document.getElementById('password-submit');
+  const passwordError = document.getElementById('password-error');
+  const diaryCloseBtn = document.getElementById('diary-close-btn');
 
   // ===== Swipe State =====
   let startX = 0;
@@ -349,8 +359,152 @@
   // ===== CTA Button Handler =====
   if (ctaButton) {
     ctaButton.addEventListener('click', function() {
-      console.log('CTA clicked: Ready for next screen!');
-      // Future: Add transition to next screen here
+      showNarrationScreen();
+    });
+  }
+
+  // ===== Narration Screen =====
+  function showNarrationScreen() {
+    if (!screenNarration || !narrationText) return;
+
+    switchScreen(screenTimeline, screenNarration);
+
+    // Show narration text with typewriter effect
+    narrationText.classList.add('show');
+
+    // Check if Typed.js is available
+    if (typeof Typed !== 'undefined') {
+      const typed = new Typed('#narration-text', {
+        strings: ["that's when the diary of my life started getting written"],
+        typeSpeed: 50,
+        showCursor: false,
+        onComplete: function() {
+          // Auto-advance to diary cover after 2 seconds
+          setTimeout(showDiaryCoverScreen, 2000);
+        }
+      });
+    } else {
+      // Fallback: Show text instantly
+      narrationText.textContent = "that's when the diary of my life started getting written";
+      setTimeout(showDiaryCoverScreen, 3000);
+    }
+  }
+
+  // ===== Diary Cover Screen =====
+  function showDiaryCoverScreen() {
+    if (!screenDiaryCover || !diaryBook) return;
+
+    switchScreen(screenNarration, screenDiaryCover);
+
+    // Add click handler to diary book
+    diaryBook.addEventListener('click', showPasswordModal);
+  }
+
+  // ===== Password Modal =====
+  function showPasswordModal() {
+    if (!passwordModal || !passwordInput) return;
+
+    passwordModal.classList.add('show');
+
+    // Auto-focus input after animation
+    setTimeout(function() {
+      passwordInput.focus();
+    }, 400);
+  }
+
+  function hidePasswordModal() {
+    if (!passwordModal) return;
+    passwordModal.classList.remove('show');
+  }
+
+  function validatePassword() {
+    if (!passwordInput || !passwordError) return;
+
+    const password = passwordInput.value.trim().toLowerCase();
+    const correctPassword = 'devika';
+
+    if (password === correctPassword) {
+      // Correct password
+      passwordError.textContent = '';
+      hidePasswordModal();
+
+      // Confetti burst
+      setTimeout(confettiForDiary, 300);
+
+      // Show diary pages
+      setTimeout(showDiaryPagesScreen, 800);
+    } else {
+      // Wrong password
+      passwordError.textContent = 'Wrong password. Try again!';
+
+      // Shake animation
+      const passwordContent = passwordModal.querySelector('.password-content');
+      if (passwordContent) {
+        passwordContent.classList.add('shake');
+        setTimeout(function() {
+          passwordContent.classList.remove('shake');
+        }, 500);
+      }
+
+      // Clear input
+      passwordInput.value = '';
+      passwordInput.focus();
+    }
+  }
+
+  // ===== Confetti for Diary =====
+  function confettiForDiary() {
+    if (typeof confetti !== 'function') return;
+
+    // Center burst
+    confetti({
+      particleCount: 100,
+      spread: 70,
+      origin: { x: 0.5, y: 0.5 },
+      colors: ['#FFD700', '#FFC629', '#FF69B4', '#FFB6C1', '#FFFF00'],
+    });
+
+    // Side bursts
+    setTimeout(function() {
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: { x: 0.2, y: 0.6 },
+        colors: ['#FFD700', '#FFC629', '#FF69B4'],
+      });
+      confetti({
+        particleCount: 50,
+        spread: 60,
+        origin: { x: 0.8, y: 0.6 },
+        colors: ['#FFD700', '#FFC629', '#FF69B4'],
+      });
+    }, 200);
+  }
+
+  // ===== Diary Pages Screen =====
+  function showDiaryPagesScreen() {
+    if (!screenDiaryPages) return;
+
+    switchScreen(screenDiaryCover, screenDiaryPages);
+  }
+
+  // ===== Password Event Listeners =====
+  if (passwordSubmit) {
+    passwordSubmit.addEventListener('click', validatePassword);
+  }
+
+  if (passwordInput) {
+    passwordInput.addEventListener('keypress', function(e) {
+      if (e.key === 'Enter') {
+        validatePassword();
+      }
+    });
+  }
+
+  // ===== Diary Close Button =====
+  if (diaryCloseBtn) {
+    diaryCloseBtn.addEventListener('click', function() {
+      switchScreen(screenDiaryPages, screenDiaryCover);
     });
   }
 })();
