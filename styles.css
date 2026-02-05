@@ -1673,20 +1673,21 @@ img {
 
   .diary-book-wrapper {
     height: auto;
-    min-height: 500px;
-    max-height: calc(100vh - 8rem);
+    min-height: 600px;
+    max-height: calc(100vh - 6rem);
   }
 
   .diary-page-wrapper {
     flex-direction: column;
-    min-height: 500px;
+    min-height: 600px;
   }
 
   .diary-page {
     padding: 1.5rem 1rem;
-    min-height: 250px;
-    gap: 1rem;
+    min-height: 300px;
+    gap: 0.8rem;
     overflow-y: auto;
+    justify-content: flex-start;
   }
 
   .diary-page-left,
@@ -1703,8 +1704,9 @@ img {
   .page-image-container {
     max-width: 100%;
     width: 100%;
-    padding: 0.8rem 0.8rem 2rem;
+    padding: 0.8rem 0.8rem 1.5rem;
     transform: rotate(0deg);
+    flex-shrink: 0;
   }
 
   .page-image-container:hover {
@@ -1718,15 +1720,18 @@ img {
   }
 
   .page-image-container img {
-    max-height: 200px;
+    max-height: 180px;
     width: 100%;
     object-fit: contain;
   }
 
   /* Page title adjustments */
   .page-title {
-    font-size: 1.3rem;
+    font-size: 1.4rem;
     padding: 0 0.5rem;
+    margin-top: 0.5rem;
+    flex-shrink: 0;
+    font-weight: 600;
   }
 
   /* Decorations - reduce size and opacity on mobile */
