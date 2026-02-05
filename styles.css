@@ -62,9 +62,10 @@ img {
   flex-direction: column;
   align-items: center;
   width: 100%;
-  max-width: 26rem;
+  max-width: 32rem;
   padding: 1rem;
   gap: 1.25rem;
+  position: relative;
 }
 
 .profile-card {
@@ -141,7 +142,7 @@ img {
 
 /* Bio */
 .card-bio {
-  padding: 1rem 1.25rem 1.25rem;
+  padding: 1rem 1.25rem 0.75rem;
 }
 
 .bio-label {
@@ -156,6 +157,64 @@ img {
   font-size: 1rem;
   color: var(--text-primary);
   line-height: 1.4;
+}
+
+/* About Me */
+.card-about {
+  padding: 0 1.25rem 1.25rem;
+}
+
+.about-bubbles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
+.about-bubble {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background: var(--bumble-yellow);
+  color: #333;
+  font-size: 0.9rem;
+  font-weight: 500;
+  border-radius: 1.25rem;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+}
+
+/* Nope Message Overlay */
+.nope-message {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(0, 0, 0, 0.9);
+  padding: 1.5rem 2rem;
+  border-radius: 1rem;
+  z-index: 100;
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.nope-message.show {
+  opacity: 1;
+  visibility: visible;
+  animation: nope-shake 0.5s ease;
+}
+
+.nope-message p {
+  font-size: 1.1rem;
+  color: #fff;
+  text-align: center;
+  line-height: 1.5;
+  margin: 0;
+}
+
+@keyframes nope-shake {
+  0%, 100% { transform: translate(-50%, -50%) rotate(0deg); }
+  25% { transform: translate(-50%, -50%) rotate(-5deg); }
+  75% { transform: translate(-50%, -50%) rotate(5deg); }
 }
 
 /* Swipe Hint */

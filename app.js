@@ -6,6 +6,7 @@
   const screenMatch = document.getElementById('screen-match');
   const screenChat = document.getElementById('screen-chat');
   const card = document.getElementById('swipe-card');
+  const nopeMessage = document.getElementById('nope-message');
 
   // ===== Swipe State =====
   let startX = 0;
@@ -65,10 +66,17 @@
       card.style.opacity = '0';
       setTimeout(showMatchScreen, 400);
     } else if (currentX < -SWIPE_THRESHOLD) {
-      // Swipe left — fly off left, then reset
+      // Swipe left — show nope message, then reset
       card.classList.add('fly-off');
       card.style.transform = 'translateX(-150vw) rotate(-30deg)';
       card.style.opacity = '0';
+
+      // Show the nope message
+      setTimeout(function () {
+        nopeMessage.classList.add('show');
+      }, 200);
+
+      // Reset card after showing message
       setTimeout(function () {
         card.classList.remove('fly-off');
         card.style.transition = 'none';
@@ -76,6 +84,11 @@
         card.style.opacity = '';
         likeLabel.style.opacity = 0;
         nopeLabel.style.opacity = 0;
+
+        // Hide message after a delay
+        setTimeout(function () {
+          nopeMessage.classList.remove('show');
+        }, 2000);
       }, 400);
     } else {
       // Snap back
