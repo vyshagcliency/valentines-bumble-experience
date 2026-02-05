@@ -212,10 +212,10 @@
   // ===== Timeline Message Data =====
   const timelineMessages = [
     // Initial exchange
-    { type: 'msg', side: 'right', text: 'where did u get that from', emotional: false, delay: 400 },
-    { type: 'msg', side: 'left', text: 'get what', emotional: false, delay: 350 },
-    { type: 'msg', side: 'left', text: 'that cute smile 😊', emotional: true, delay: 600 },
-    { type: 'msg', side: 'right', text: 'haha', emotional: false, delay: 300 },
+    { type: 'msg', side: 'left', text: 'where did u get that from', emotional: false, delay: 400 },
+    { type: 'msg', side: 'right', text: 'get what', emotional: false, delay: 350 },
+    { type: 'msg', side: 'right', text: 'that cute smile 😊', emotional: true, delay: 600 },
+    { type: 'msg', side: 'left', text: 'haha', emotional: false, delay: 300 },
     { type: 'msg', side: 'left', text: 'i am devika', emotional: true, delay: 500 },
     { type: 'msg', side: 'left', text: 'wbu', emotional: false, delay: 350 },
     { type: 'msg', side: 'right', text: 'Sreeharsh', emotional: true, delay: 500 },
@@ -245,7 +245,7 @@
     { type: 'blur', side: 'right', emoji: '💕', delay: 150 },
 
     // Resume clear messages
-    { type: 'msg', side: 'right', text: 'i am in kerala', emotional: false, delay: 500 },
+    { type: 'msg', side: 'right', text: 'your next date here', emotional: false, delay: 500 },
     { type: 'msg', side: 'left', text: '😮😊', emotional: false, delay: 400 },
 
     // More blurred time lapse
@@ -267,8 +267,8 @@
     { type: 'blur', side: 'right', emoji: '😊', delay: 150 },
 
     // Final message before CTA
-    { type: 'separator', text: 'April arrives...', delay: 1000 },
-    { type: 'msg', side: 'left', text: 'can you come to the canteen', emotional: true, delay: 800 }
+    { type: 'separator', text: 'May arrives...', delay: 1000 },
+    { type: 'msg', side: 'right', text: 'can you come to the canteen', emotional: true, delay: 800 }
   ];
 
   // ===== Timeline Helper Functions =====
