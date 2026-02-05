@@ -616,6 +616,17 @@ img {
   animation: timeline-emotional-appear 0.4s ease-out forwards;
 }
 
+/* Blurred Messages */
+.blur-bubble {
+  opacity: 0.5;
+}
+
+.blur-text {
+  filter: blur(5px);
+  user-select: none;
+  color: #999;
+}
+
 @keyframes timeline-msg-appear {
   0% { opacity: 0; transform: translateY(1rem) scale(0.9); }
   100% { opacity: 1; transform: translateY(0) scale(1); }

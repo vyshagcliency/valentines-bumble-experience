@@ -201,41 +201,62 @@
 
   // ===== Timeline Message Data =====
   const timelineMessages = [
-    // Phase 1: Initial flirty exchange
-    { type: 'msg', side: 'right', text: 'passenger seat tho', emotional: false, delay: 400 },
-    { type: 'msg', side: 'left', text: 'That cute smile 😉', emotional: true, delay: 600 },
-    { type: 'msg', side: 'right', text: '😂', emotional: false, delay: 300 },
-    { type: 'msg', side: 'left', text: 'I mean it', emotional: false, delay: 350 },
-    { type: 'msg', side: 'right', text: 'okay okay', emotional: false, delay: 400 },
-    { type: 'separator', text: '1 week later', delay: 800 },
-
-    // Phase 2: Introduction
-    { type: 'msg', side: 'left', text: "I'm Devika", emotional: true, delay: 500 },
+    // Initial exchange
+    { type: 'msg', side: 'right', text: 'where did u get that from', emotional: false, delay: 400 },
+    { type: 'msg', side: 'left', text: 'get what', emotional: false, delay: 350 },
+    { type: 'msg', side: 'left', text: 'that cute smile 😊', emotional: true, delay: 600 },
+    { type: 'msg', side: 'right', text: 'haha', emotional: false, delay: 300 },
+    { type: 'msg', side: 'left', text: 'i am devika', emotional: true, delay: 500 },
+    { type: 'msg', side: 'left', text: 'wbu', emotional: false, delay: 350 },
     { type: 'msg', side: 'right', text: 'Sreeharsh', emotional: true, delay: 500 },
-    { type: 'msg', side: 'left', text: 'Nice name', emotional: false, delay: 350 },
-    { type: 'msg', side: 'right', text: 'Thanks, yours too', emotional: false, delay: 400 },
-    { type: 'separator', text: '2 weeks later', delay: 800 },
-
-    // Phase 3: The turning point
     { type: 'msg', side: 'right', text: 'So,how many text until i get to see that cute smile in person', emotional: true, delay: 600 },
-    { type: 'msg', side: 'left', text: 'Thts too fast', emotional: false, delay: 400 },
-    { type: 'msg', side: 'right', text: 'Is it though?', emotional: false, delay: 350 },
-    { type: 'msg', side: 'left', text: 'Maybe not 😅', emotional: false, delay: 450 },
-    { type: 'separator', text: 'a day later', delay: 700 },
 
-    // Phase 4: Timeline negotiation
-    { type: 'msg', side: 'left', text: '2030?', emotional: false, delay: 400 },
-    { type: 'msg', side: 'right', text: '😂', emotional: false, delay: 200 },
-    { type: 'msg', side: 'right', text: 'Thts too long', emotional: false, delay: 350 },
-    { type: 'msg', side: 'left', text: 'April then', emotional: false, delay: 400 },
-    { type: 'msg', side: 'right', text: 'April works', emotional: false, delay: 350 },
-    { type: 'msg', side: 'right', text: "Cool,I'll use that to make u rethink waiting", emotional: true, delay: 600 },
-    { type: 'msg', side: 'left', text: "We'll see 😏", emotional: false, delay: 450 },
-    { type: 'separator', text: '3 weeks later', delay: 900 },
+    // Time lapse with blurred messages
+    { type: 'separator', text: 'many messages later...', delay: 800 },
+    { type: 'blur', side: 'left', emoji: '❤️', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '😊', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '💕', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '😍', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '🥰', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '💖', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '😘', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '❤️', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '💗', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '😊', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '💝', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '🥰', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '💕', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '❤️', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '😍', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '💖', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '🥰', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '💗', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '😘', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '💕', delay: 150 },
 
-    // Phase 5: Resolution
-    { type: 'msg', side: 'right', text: 'April has 30 days right', emotional: false, delay: 400 },
-    { type: 'msg', side: 'left', text: 'Yes why', emotional: false, delay: 350 },
+    // Resume clear messages
+    { type: 'msg', side: 'right', text: 'i am in kerala', emotional: false, delay: 500 },
+    { type: 'msg', side: 'left', text: '😮😊', emotional: false, delay: 400 },
+
+    // More blurred time lapse
+    { type: 'separator', text: 'weeks later...', delay: 800 },
+    { type: 'blur', side: 'right', emoji: '💭', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '💕', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '😊', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '❤️', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '🥰', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '💖', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '😍', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '💗', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '💕', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '😘', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '❤️', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '💝', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '🥰', delay: 150 },
+    { type: 'blur', side: 'left', emoji: '💖', delay: 150 },
+    { type: 'blur', side: 'right', emoji: '😊', delay: 150 },
+
+    // Final message before CTA
     { type: 'separator', text: 'April arrives...', delay: 1000 },
     { type: 'msg', side: 'left', text: 'can you come to the canteen', emotional: true, delay: 800 }
   ];
@@ -247,6 +268,18 @@
       separator.className = 'timeline-separator';
       separator.innerHTML = '<div class="timeline-separator-line">' + msgData.text + '</div>';
       return separator;
+    }
+
+    if (msgData.type === 'blur') {
+      const msgDiv = document.createElement('div');
+      msgDiv.className = 'timeline-msg timeline-msg-' + msgData.side;
+
+      const bubble = document.createElement('div');
+      bubble.className = 'chat-bubble chat-bubble-' + msgData.side + ' blur-bubble';
+      bubble.innerHTML = '<span class="blur-text">████████</span> ' + msgData.emoji;
+
+      msgDiv.appendChild(bubble);
+      return msgDiv;
     }
 
     const msgDiv = document.createElement('div');
@@ -296,8 +329,17 @@
 
     switchScreen(screenChat, screenTimeline);
 
-    // Clear timeline body
+    // Copy existing chat messages to timeline to continue the conversation
     timelineBody.innerHTML = '';
+    const chatMessages = screenChat.querySelectorAll('[data-chat-msg]');
+    chatMessages.forEach(function(msg) {
+      const clone = msg.cloneNode(true);
+      clone.classList.remove('visible');
+      clone.style.opacity = '1';
+      clone.style.transform = 'none';
+      timelineBody.appendChild(clone);
+    });
+
     timelineCta.classList.remove('show');
 
     // Start animation after a brief delay
