@@ -512,6 +512,9 @@
 
   function updateSpreadDisplay() {
     diarySpreads.forEach((spread, index) => {
+      // Remove all animation classes
+      spread.classList.remove('turning-forward', 'turning-backward', 'entering-forward', 'exiting-backward');
+
       if (index === currentSpread) {
         spread.classList.add('active');
       } else {
@@ -542,33 +545,43 @@
 
     isAnimating = true;
     const currentSpreadEl = diarySpreads[currentSpread];
+    const nextSpreadEl = diarySpreads[currentSpread + 1];
 
+    // Current page slides out to the left
     currentSpreadEl.classList.add('turning-forward');
+
+    // Next page slides in from the right
+    nextSpreadEl.classList.add('active', 'entering-forward');
 
     setTimeout(() => {
       currentSpreadEl.classList.remove('turning-forward', 'active');
+      nextSpreadEl.classList.remove('entering-forward');
       currentSpread++;
-      updateSpreadDisplay();
       updateNavigationButtons();
       isAnimating = false;
-    }, 800);
+    }, 600);
   }
 
   function turnPageBackward() {
     if (isAnimating || currentSpread === 0) return;
 
     isAnimating = true;
-    currentSpread--;
-    const newSpreadEl = diarySpreads[currentSpread];
+    const currentSpreadEl = diarySpreads[currentSpread];
+    const prevSpreadEl = diarySpreads[currentSpread - 1];
 
-    newSpreadEl.classList.add('active', 'turning-backward');
+    // Current page slides out to the right
+    currentSpreadEl.classList.add('exiting-backward');
+
+    // Previous page slides in from the left
+    prevSpreadEl.classList.add('active', 'turning-backward');
 
     setTimeout(() => {
-      newSpreadEl.classList.remove('turning-backward');
-      updateSpreadDisplay();
+      currentSpreadEl.classList.remove('exiting-backward', 'active');
+      prevSpreadEl.classList.remove('turning-backward');
+      currentSpread--;
       updateNavigationButtons();
       isAnimating = false;
-    }, 800);
+    }, 600);
   }
 
   function handlePageClick(event) {
