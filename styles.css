@@ -1600,6 +1600,87 @@ img {
   text-shadow: 1px 1px 4px rgba(255, 255, 255, 0.8);
 }
 
+.valentine-response-content .special-message {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #ff1744;
+  margin-top: 0.5rem;
+  animation: pulse-text 2s ease-in-out infinite;
+}
+
+@keyframes pulse-text {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Doctor-themed decorations for Yes response */
+.doctor-decorations {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.doctor-deco {
+  position: absolute;
+  font-size: 2.5rem;
+  animation: float-doctor-deco 3s ease-in-out infinite;
+  opacity: 0.8;
+  filter: drop-shadow(2px 2px 4px rgba(0, 0, 0, 0.2));
+}
+
+@keyframes float-doctor-deco {
+  0%, 100% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-15px) rotate(10deg);
+    opacity: 1;
+  }
+}
+
+.doctor-heart {
+  top: 12%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.doctor-steth {
+  top: 20%;
+  right: 10%;
+  animation-delay: 0.5s;
+  font-size: 2.8rem;
+}
+
+.doctor-heart-2 {
+  bottom: 25%;
+  left: 10%;
+  animation-delay: 1s;
+}
+
+.doctor-pulse {
+  top: 50%;
+  left: 8%;
+  animation-delay: 1.5s;
+}
+
+.doctor-cross {
+  bottom: 20%;
+  right: 12%;
+  animation-delay: 2s;
+  font-size: 2.3rem;
+}
+
+.doctor-heart-3 {
+  top: 40%;
+  right: 8%;
+  animation-delay: 2.5s;
+}
+
 /* Navigation Controls */
 .diary-nav-controls {
   display: flex;
@@ -1795,6 +1876,24 @@ img {
   .valentine-response-content .response-text {
     font-size: 1.1rem;
     padding: 0 0.5rem;
+  }
+
+  .valentine-response-content .special-message {
+    font-size: 1.2rem;
+  }
+
+  /* Doctor decorations on mobile - smaller and more subtle */
+  .doctor-deco {
+    font-size: 1.8rem;
+    opacity: 0.6;
+  }
+
+  .doctor-steth {
+    font-size: 2rem;
+  }
+
+  .doctor-cross {
+    font-size: 1.6rem;
   }
 
   /* Navigation controls */
