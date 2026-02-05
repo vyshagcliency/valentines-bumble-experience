@@ -262,6 +262,8 @@
   }
 
   function animateTimelineMessages() {
+    if (!timelineBody || !timelineCta) return;
+
     let cumulativeDelay = 0;
 
     timelineMessages.forEach(function(msgData, index) {
@@ -290,6 +292,8 @@
   }
 
   function showTimelineScreen() {
+    if (!screenTimeline || !timelineBody || !timelineCta) return;
+
     switchScreen(screenChat, screenTimeline);
 
     // Clear timeline body
@@ -301,8 +305,10 @@
   }
 
   // ===== CTA Button Handler =====
-  ctaButton.addEventListener('click', function() {
-    console.log('CTA clicked: Ready for next screen!');
-    // Future: Add transition to next screen here
-  });
+  if (ctaButton) {
+    ctaButton.addEventListener('click', function() {
+      console.log('CTA clicked: Ready for next screen!');
+      // Future: Add transition to next screen here
+    });
+  }
 })();
