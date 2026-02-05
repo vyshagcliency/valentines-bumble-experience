@@ -232,21 +232,140 @@
       </svg>
     </button>
     <div class="diary-pages-container">
-      <div class="diary-open-book">
-        <div class="diary-page diary-page-left">
-          <div class="diary-sticker diary-sticker-1">♡</div>
-          <div class="diary-sticker diary-sticker-2">✧</div>
-          <div class="diary-page-content">
-            <p class="diary-placeholder">More memories coming soon...</p>
+      <div class="diary-book-wrapper">
+        <!-- Spread 0: First Meeting + Foodie -->
+        <div class="diary-spread" data-spread="0">
+          <div class="diary-page-wrapper">
+            <div class="diary-page diary-page-left" data-mood="romantic">
+              <div class="page-image-container">
+                <img src="firstmeet.jpeg" alt="Our first meeting">
+              </div>
+              <h2 class="page-title">Our first meeting</h2>
+              <div class="page-decorations">
+                <span class="deco-heart">♡</span>
+                <span class="deco-heart">❤</span>
+                <span class="deco-sparkle">✨</span>
+              </div>
+            </div>
+            <div class="diary-page diary-page-right" data-mood="playful">
+              <div class="page-image-container">
+                <img src="foodie.jpeg" alt="Foodiee">
+              </div>
+              <h2 class="page-title">Foodiee</h2>
+              <div class="page-decorations">
+                <span class="deco-emoji">🍕</span>
+                <span class="deco-emoji">🍰</span>
+                <span class="deco-star">⭐</span>
+              </div>
+            </div>
           </div>
         </div>
-        <div class="diary-page diary-page-right">
-          <div class="diary-sticker diary-sticker-3">❀</div>
-          <div class="diary-sticker diary-sticker-4">✿</div>
-          <div class="diary-page-content">
-            <p class="diary-placeholder">To be continued...</p>
+
+        <!-- Spread 1: Penguin + Sleeping Princess -->
+        <div class="diary-spread" data-spread="1">
+          <div class="diary-page-wrapper">
+            <div class="diary-page diary-page-left" data-mood="cute">
+              <div class="page-image-container">
+                <img src="pengiun.jpeg" alt="My penguin">
+              </div>
+              <h2 class="page-title">My penguin</h2>
+              <div class="page-decorations">
+                <span class="deco-emoji">🐧</span>
+                <span class="deco-snowflake">❄️</span>
+                <span class="deco-heart">💙</span>
+              </div>
+            </div>
+            <div class="diary-page diary-page-right" data-mood="dreamy">
+              <div class="page-image-container">
+                <img src="sleeping.jpeg" alt="Sleeping princess">
+              </div>
+              <h2 class="page-title">Sleeping princess</h2>
+              <div class="page-decorations">
+                <span class="deco-moon">🌙</span>
+                <span class="deco-star">⭐</span>
+                <span class="deco-sparkle">✨</span>
+              </div>
+            </div>
           </div>
         </div>
+
+        <!-- Spread 2: Goddess + Home -->
+        <div class="diary-spread" data-spread="2">
+          <div class="diary-page-wrapper">
+            <div class="diary-page diary-page-left" data-mood="divine">
+              <div class="page-image-container">
+                <img src="godess.jpeg" alt="My goddess">
+              </div>
+              <h2 class="page-title">My goddess</h2>
+              <div class="page-decorations">
+                <span class="deco-crown">👑</span>
+                <span class="deco-sparkle">✨</span>
+                <span class="deco-heart">💛</span>
+              </div>
+            </div>
+            <div class="diary-page diary-page-right" data-mood="cozy">
+              <div class="page-image-container">
+                <img src="myhome.jpeg" alt="My home">
+              </div>
+              <h2 class="page-title">My home</h2>
+              <div class="page-decorations">
+                <span class="deco-emoji">🏡</span>
+                <span class="deco-heart">🧡</span>
+                <span class="deco-sparkle">✨</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Spread 3: Valentine Question + Response -->
+        <div class="diary-spread final-spread" data-spread="3">
+          <div class="diary-page-wrapper">
+            <div class="diary-page diary-page-left valentine-question">
+              <h1 class="valentine-heading">Will you be my valentine?</h1>
+              <div class="valentine-hearts">
+                <span class="floating-heart">❤️</span>
+                <span class="floating-heart">💕</span>
+                <span class="floating-heart">💖</span>
+                <span class="floating-heart">💗</span>
+                <span class="floating-heart">💝</span>
+              </div>
+            </div>
+            <div class="diary-page diary-page-right valentine-response">
+              <div id="valentine-buttons">
+                <button id="valentine-yes" class="valentine-btn valentine-btn-yes">Yes</button>
+                <button id="valentine-no" class="valentine-btn valentine-btn-no">No</button>
+              </div>
+              <div id="no-response" class="valentine-response-content" style="display: none;">
+                <img src="cry.jpeg" alt="Please say yes" class="response-image">
+                <p class="response-text">Plsss babyy, just say yess</p>
+              </div>
+              <div id="yes-response" class="valentine-response-content" style="display: none;">
+                <img src="endimage.jpeg" alt="Happy Valentine's Day" class="response-image">
+                <p class="response-text">Happy valentines day baby ❤️ you mean the world to me, i love you so much 'kanmaniiii'</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Navigation Controls -->
+      <div class="diary-nav-controls">
+        <button class="nav-btn nav-prev" aria-label="Previous page">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="15 18 9 12 15 6"></polyline>
+          </svg>
+        </button>
+        <div class="page-indicators">
+          <span class="page-indicator active" data-spread="0"></span>
+          <span class="page-indicator" data-spread="1"></span>
+          <span class="page-indicator" data-spread="2"></span>
+          <span class="page-indicator" data-spread="3"></span>
+        </div>
+        <button class="nav-btn nav-next" aria-label="Next page">
+          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <polyline points="9 18 15 12 9 6"></polyline>
+          </svg>
+        </button>
       </div>
     </div>
   </div>

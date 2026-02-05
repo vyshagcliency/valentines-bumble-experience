@@ -486,7 +486,213 @@
     if (!screenDiaryPages) return;
 
     switchScreen(screenDiaryCover, screenDiaryPages);
+
+    // Reset to first spread when opening
+    currentSpread = 0;
+    updateSpreadDisplay();
+    updateNavigationButtons();
   }
+
+  // ===== Diary Pages Navigation =====
+  let currentSpread = 0;
+  const totalSpreads = 4;
+  let isAnimating = false;
+  let valentineResponseShown = false;
+
+  const diarySpreads = document.querySelectorAll('.diary-spread');
+  const pageIndicators = document.querySelectorAll('.page-indicator');
+  const navPrevBtn = document.querySelector('.nav-prev');
+  const navNextBtn = document.querySelector('.nav-next');
+  const diaryBookWrapper = document.querySelector('.diary-book-wrapper');
+  const valentineYesBtn = document.getElementById('valentine-yes');
+  const valentineNoBtn = document.getElementById('valentine-no');
+  const valentineButtons = document.getElementById('valentine-buttons');
+  const noResponse = document.getElementById('no-response');
+  const yesResponse = document.getElementById('yes-response');
+
+  function updateSpreadDisplay() {
+    diarySpreads.forEach((spread, index) => {
+      if (index === currentSpread) {
+        spread.classList.add('active');
+      } else {
+        spread.classList.remove('active');
+      }
+    });
+
+    pageIndicators.forEach((indicator, index) => {
+      if (index === currentSpread) {
+        indicator.classList.add('active');
+      } else {
+        indicator.classList.remove('active');
+      }
+    });
+  }
+
+  function updateNavigationButtons() {
+    if (navPrevBtn) {
+      navPrevBtn.disabled = currentSpread === 0;
+    }
+    if (navNextBtn) {
+      navNextBtn.disabled = currentSpread === totalSpreads - 1;
+    }
+  }
+
+  function turnPageForward() {
+    if (isAnimating || currentSpread >= totalSpreads - 1) return;
+
+    isAnimating = true;
+    const currentSpreadEl = diarySpreads[currentSpread];
+
+    currentSpreadEl.classList.add('turning-forward');
+
+    setTimeout(() => {
+      currentSpreadEl.classList.remove('turning-forward', 'active');
+      currentSpread++;
+      updateSpreadDisplay();
+      updateNavigationButtons();
+      isAnimating = false;
+    }, 800);
+  }
+
+  function turnPageBackward() {
+    if (isAnimating || currentSpread === 0) return;
+
+    isAnimating = true;
+    currentSpread--;
+    const newSpreadEl = diarySpreads[currentSpread];
+
+    newSpreadEl.classList.add('active', 'turning-backward');
+
+    setTimeout(() => {
+      newSpreadEl.classList.remove('turning-backward');
+      updateSpreadDisplay();
+      updateNavigationButtons();
+      isAnimating = false;
+    }, 800);
+  }
+
+  function handlePageClick(event) {
+    if (isAnimating) return;
+
+    const rect = diaryBookWrapper.getBoundingClientRect();
+    const clickX = event.clientX - rect.left;
+    const halfWidth = rect.width / 2;
+
+    if (clickX > halfWidth) {
+      turnPageForward();
+    } else {
+      turnPageBackward();
+    }
+  }
+
+  function handleKeyboard(event) {
+    if (!screenDiaryPages || !screenDiaryPages.classList.contains('active')) return;
+
+    switch(event.key) {
+      case 'ArrowRight':
+      case 'ArrowDown':
+        turnPageForward();
+        break;
+      case 'ArrowLeft':
+      case 'ArrowUp':
+        turnPageBackward();
+        break;
+      case 'Escape':
+        if (diaryCloseBtn) {
+          diaryCloseBtn.click();
+        }
+        break;
+    }
+  }
+
+  // Touch swipe support for diary pages
+  let diaryTouchStartX = 0;
+  let diaryTouchEndX = 0;
+
+  function handleDiaryTouchStart(event) {
+    diaryTouchStartX = event.touches[0].clientX;
+  }
+
+  function handleDiaryTouchEnd(event) {
+    diaryTouchEndX = event.changedTouches[0].clientX;
+    const swipeDistance = diaryTouchStartX - diaryTouchEndX;
+
+    if (Math.abs(swipeDistance) > 50) {
+      if (swipeDistance > 0) {
+        // Swiped left - go forward
+        turnPageForward();
+      } else {
+        // Swiped right - go backward
+        turnPageBackward();
+      }
+    }
+  }
+
+  // Valentine button handlers
+  function handleNoButton() {
+    if (!valentineButtons || !noResponse) return;
+
+    valentineButtons.style.display = 'none';
+    noResponse.style.display = 'flex';
+
+    setTimeout(() => {
+      noResponse.style.display = 'none';
+      valentineButtons.style.display = 'flex';
+    }, 3000);
+  }
+
+  function handleYesButton() {
+    if (!valentineButtons || !yesResponse) return;
+
+    valentineButtons.style.display = 'none';
+    yesResponse.style.display = 'flex';
+    valentineResponseShown = true;
+
+    // Trigger confetti bursts
+    if (typeof confetti === 'function') {
+      setTimeout(() => confetti(), 300);
+      setTimeout(() => confetti(), 800);
+      setTimeout(() => confetti(), 1500);
+    }
+  }
+
+  // Event Listeners for diary pages navigation
+  if (navPrevBtn) {
+    navPrevBtn.addEventListener('click', turnPageBackward);
+  }
+
+  if (navNextBtn) {
+    navNextBtn.addEventListener('click', turnPageForward);
+  }
+
+  if (diaryBookWrapper) {
+    diaryBookWrapper.addEventListener('click', handlePageClick);
+    diaryBookWrapper.addEventListener('touchstart', handleDiaryTouchStart);
+    diaryBookWrapper.addEventListener('touchend', handleDiaryTouchEnd);
+  }
+
+  if (pageIndicators.length > 0) {
+    pageIndicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        if (isAnimating) return;
+        if (index > currentSpread) {
+          turnPageForward();
+        } else if (index < currentSpread) {
+          turnPageBackward();
+        }
+      });
+    });
+  }
+
+  if (valentineNoBtn) {
+    valentineNoBtn.addEventListener('click', handleNoButton);
+  }
+
+  if (valentineYesBtn) {
+    valentineYesBtn.addEventListener('click', handleYesButton);
+  }
+
+  document.addEventListener('keydown', handleKeyboard);
 
   // ===== Password Event Listeners =====
   if (passwordSubmit) {
