@@ -212,14 +212,16 @@
   // ===== Timeline Message Data =====
   const timelineMessages = [
     // Initial exchange
-    { type: 'msg', side: 'left', text: 'where did u get that from', emotional: false, delay: 400 },
-    { type: 'msg', side: 'right', text: 'get what', emotional: false, delay: 350 },
+    { type: 'msg', side: 'right', text: 'where did u get that from', emotional: false, delay: 400 },
+    { type: 'msg', side: 'left', text: 'get what', emotional: false, delay: 350 },
     { type: 'msg', side: 'right', text: 'that cute smile 😊', emotional: true, delay: 600 },
     { type: 'msg', side: 'left', text: 'haha', emotional: false, delay: 300 },
     { type: 'msg', side: 'left', text: 'i am devika', emotional: true, delay: 500 },
     { type: 'msg', side: 'left', text: 'wbu', emotional: false, delay: 350 },
     { type: 'msg', side: 'right', text: 'Sreeharsh', emotional: true, delay: 500 },
     { type: 'msg', side: 'right', text: 'So,how many text until i get to see that cute smile in person', emotional: true, delay: 600 },
+    { type: 'msg', side: 'left', text: 'idk', emotional: false, delay: 400 },
+    { type: 'msg', side: 'left', text: 'depends on how gd u text', emotional: false, delay: 500 },
 
     // Time lapse with blurred messages
     { type: 'separator', text: 'many messages later...', delay: 800 },
