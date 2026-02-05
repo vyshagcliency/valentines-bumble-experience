@@ -1752,7 +1752,7 @@ img {
 
   /* Valentine question page */
   .valentine-question {
-    min-height: 250px;
+    min-height: 300px;
     padding: 2rem 1rem;
   }
 
@@ -1768,7 +1768,7 @@ img {
 
   /* Valentine response page */
   .valentine-response {
-    min-height: 250px;
+    min-height: 300px;
   }
 
   .valentine-btn {

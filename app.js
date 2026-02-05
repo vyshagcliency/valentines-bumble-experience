@@ -642,24 +642,48 @@
   }
 
   // Valentine button handlers
-  function handleNoButton() {
+  function handleNoButton(event) {
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
     if (!valentineButtons || !noResponse) return;
 
     valentineButtons.style.display = 'none';
     noResponse.style.display = 'flex';
 
+    // On mobile, hide the question page when showing response
+    const valentineQuestion = document.querySelector('.valentine-question');
+    if (valentineQuestion && window.innerWidth <= 768) {
+      valentineQuestion.style.display = 'none';
+    }
+
     setTimeout(() => {
       noResponse.style.display = 'none';
       valentineButtons.style.display = 'flex';
+      // Restore question page
+      if (valentineQuestion && window.innerWidth <= 768) {
+        valentineQuestion.style.display = 'flex';
+      }
     }, 3000);
   }
 
-  function handleYesButton() {
+  function handleYesButton(event) {
+    if (event) {
+      event.stopPropagation();
+      event.preventDefault();
+    }
     if (!valentineButtons || !yesResponse) return;
 
     valentineButtons.style.display = 'none';
     yesResponse.style.display = 'flex';
     valentineResponseShown = true;
+
+    // On mobile, hide the question page when showing response
+    const valentineQuestion = document.querySelector('.valentine-question');
+    if (valentineQuestion && window.innerWidth <= 768) {
+      valentineQuestion.style.display = 'none';
+    }
 
     // Trigger confetti bursts
     if (typeof confetti === 'function') {
@@ -686,15 +710,47 @@
 
   if (pageIndicators.length > 0) {
     pageIndicators.forEach((indicator, index) => {
-      indicator.addEventListener('click', () => {
-        if (isAnimating) return;
-        if (index > currentSpread) {
-          turnPageForward();
-        } else if (index < currentSpread) {
-          turnPageBackward();
-        }
+      indicator.addEventListener('click', (e) => {
+        e.stopPropagation();
+        if (isAnimating || index === currentSpread) return;
+
+        // Jump directly to the target page
+        const oldSpreadEl = diarySpreads[currentSpread];
+        const newSpreadEl = diarySpreads[index];
+
+        // Remove active from old
+        oldSpreadEl.classList.remove('active');
+
+        // Activate new
+        newSpreadEl.classList.add('active');
+
+        // Update current spread
+        currentSpread = index;
+        updateNavigationButtons();
+
+        // Update indicators
+        pageIndicators.forEach((ind, i) => {
+          if (i === index) {
+            ind.classList.add('active');
+          } else {
+            ind.classList.remove('active');
+          }
+        });
       });
     });
+  }
+
+  // Prevent valentine buttons and responses from triggering page navigation
+  if (valentineButtons) {
+    valentineButtons.addEventListener('click', (e) => e.stopPropagation());
+  }
+
+  if (noResponse) {
+    noResponse.addEventListener('click', (e) => e.stopPropagation());
+  }
+
+  if (yesResponse) {
+    yesResponse.addEventListener('click', (e) => e.stopPropagation());
   }
 
   if (valentineNoBtn) {
